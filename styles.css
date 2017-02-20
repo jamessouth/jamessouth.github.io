@@ -66,7 +66,7 @@ header {
   line-height: 1.5;
   background: radial-gradient(lightseagreen -80%, transparent),
 			  linear-gradient(0deg, #f7f5f0, transparent 90%),
-              url('images/spiral5.png') no-repeat;
+              url('images/spiral5.PNG') no-repeat;
   background-size: cover;
   overflow: hidden;
   padding-top: 60px;
