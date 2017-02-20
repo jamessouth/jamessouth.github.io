@@ -251,7 +251,7 @@ h1:hover,
 		linear-gradient(45deg, #f7f5f0, transparent 60%),
 		linear-gradient(225deg, #f7f5f0, transparent 70%),
 		radial-gradient(lightseagreen -115%, transparent),
-        url('images/spiral5.png') no-repeat;
+        url('images/spiral5.PNG') no-repeat;
 	background-size: cover;
 }
 .exp-list-h4{
