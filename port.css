@@ -49,6 +49,10 @@ main{
 
 
 
+/* cursor: -moz-grabbing; */
+    /* cursor: -webkit-grabbing; */
+    /* cursor: grabbing; */
+
 
 
 .cube-container {
@@ -60,11 +64,14 @@ main{
 }
 
 .photo-cube{
-  transition: transform 9s;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  cursor: grab;
+  transition: transform 2s;
   width: 220px;
   height: 220px;
   transform-style:preserve-3d;
-  transform: rotateX(0deg) rotateY(0deg);
+  transform: rotateX(0deg) rotateY(20deg);
 }
 
 /* .photo-cube:hover{ */
