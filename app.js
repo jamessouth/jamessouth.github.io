@@ -1,5 +1,10 @@
 
 const pb = document.querySelectorAll('.photo-cube');
+// const cc = document.querySelectorAll('.cube-container');
+// const body = document.querySelector('body');
+// const main = document.querySelector('main');
+
+const hold = document.querySelector('.hold');
 
 // function rotateCube(e){
 	// const pi = Math.PI;
@@ -60,59 +65,88 @@ const pb = document.querySelectorAll('.photo-cube');
 	// pb.addEventListener('mousedown', rotateCube)
 // );
 
-let tt = document.querySelectorAll('img');
+//1em 2em 5em 4em
 
-tt.forEach(t => 
-	t.addEventListener('mousedown', (e) => {
-		e.preventDefault();
-	}));
+
+// let tt = document.querySelectorAll('img');
+
+// tt.forEach(t => 
+	// t.addEventListener('mousedown', (e) => {
+		// // e.preventDefault();
+		// return false;
+	// }));
+
+// main.addEventListener('mousedown', (e) => {e.preventDefault();});
+// body.addEventListener('mousedown', (e) => {e.preventDefault();});	
+	
 
 
 let isRotating = false;
 let xStart = 0;
 let yStart = 0;
-let zStart = 0;
+// let zStart = 0;
 
 function rotate(e){
+	// console.log(isRotating);
 	if(!isRotating) return;
-	const xPos = e.offsetX;
-	const yPos = e.offsetY;
+	const xPos = e.x + window.scrollX;
+	const yPos = e.y - 48 + window.scrollY;
 	const xs = xPos - xStart;
 	const ys = yPos - yStart;
 	
-	const dist = Math.round(Math.sqrt(Math.pow(Math.abs(xs),2) + 
-				 Math.pow(Math.abs(ys),2)));
+	
+	// console.log(window.getComputedStyle(pb[0]));
+	
+	pb[0].style.transform = `rotateX(${xs}deg) rotateY(${ys}deg)`;
+	
+	// const cx = this.offsetParent.clientWidth/2;
+	// const cy = this.offsetParent.clientHeight/2;
+
+	
+	// const dist = Math.round(Math.sqrt(Math.pow(Math.abs(xs),2) + 
+				 // Math.pow(Math.abs(ys),2)));
 	
 	
 	
-	let slope = Math.round(((ys)/(xs)) * 1000) / 1000 || 0;
+	// let slope = Math.round(((ys)/(xs)) * 1000) / 1000 || 0;
 	
 	
+	// console.log();
 	
+	console.log(xPos, yPos, xStart, yStart);
 	
-	// console.log(xPos, yPos, xStart, yStart, slope, xs, ys, dist);
 	// console.log(isRotating);
 	
 };
 
-
-for(let i = 0; i < pb.length; i++){
-	
-	pb[i].addEventListener('mousedown', (e) => {
+hold.addEventListener('mousedown', (e) => {
 		isRotating = true;
-		xStart = e.offsetX;
-		yStart = e.offsetY;
+		xStart = e.x + window.scrollX;
+		yStart = e.y - 48 + window.scrollY;
+		// console.log(e.x, e.y-48+window.scrollY);
 		
-		
-		console.log(xStart, yStart, zStart);
-	})
+		// console.log(e.target.offsetParent.offsetParent);
+		console.log(xStart, yStart);
+	});
+// body.addEventListener('mouseup', () => isRotating = false);
+
+hold.addEventListener('mousemove', rotate);
 	
-	pb[i].addEventListener('mousemove', rotate);
+hold.addEventListener('mouseup', () => isRotating = false);
+hold.addEventListener('mouseleave', () => isRotating = false);
+
+
+
+// for(let i = 0; i < cc.length; i++){
 	
-	pb[i].addEventListener('mouseup', () => isRotating = false);
-	pb[i].addEventListener('mouseout', () => isRotating = false);
 	
-}
+	
+	// cc[i].addEventListener('mousemove', rotate);
+	
+	// cc[i].addEventListener('mouseup', () => isRotating = false);
+	// cc[i].addEventListener('mouseout', () => isRotating = false);
+	
+// }
 
 	
 	// [lastX, lastY] = [e.offsetX, e.offsetY];
