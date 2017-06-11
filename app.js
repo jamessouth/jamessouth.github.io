@@ -1,6 +1,6 @@
 
 const pb = document.querySelectorAll('.photo-cube');
-// const cc = document.querySelectorAll('.cube-container');
+const cc = document.querySelectorAll('.cube-container');
 // const body = document.querySelector('body');
 // const main = document.querySelector('main');
 
@@ -84,55 +84,69 @@ const hold = document.querySelector('.hold');
 let isRotating = false;
 let xStart = 0;
 let yStart = 0;
-// let zStart = 0;
+let xEnd;
+let yEnd = 0;
+let xs;
+let ys;
+let oldXS;
+let oldYS;
+let whichPB;
 
 function rotate(e){
-	// console.log(isRotating);
+	
 	if(!isRotating) return;
 	const xPos = e.x + window.scrollX;
 	const yPos = e.y - 48 + window.scrollY;
-	const xs = xPos - xStart;
-	const ys = yPos - yStart;
 	
 	
-	// console.log(window.getComputedStyle(pb[0]));
+	if(xEnd){
+			
+		xs = xPos - xStart + oldXS;
+		ys = yPos - yStart + oldYS;
+			
+	} else {
 	
-	pb[0].style.transform = `rotateX(${xs}deg) rotateY(${ys}deg)`;
+		xs = xPos - xStart;
+		ys = yPos - yStart;
+		
 	
-	// const cx = this.offsetParent.clientWidth/2;
-	// const cy = this.offsetParent.clientHeight/2;
-
+	}
 	
-	// const dist = Math.round(Math.sqrt(Math.pow(Math.abs(xs),2) + 
-				 // Math.pow(Math.abs(ys),2)));
+	pb[0].style.transform = `rotateX(${-ys}deg) rotateY(${xs}deg)`;
 	
+	console.log(xPos, yPos, xStart, yStart, xs, ys);
 	
-	
-	// let slope = Math.round(((ys)/(xs)) * 1000) / 1000 || 0;
-	
-	
-	// console.log();
-	
-	console.log(xPos, yPos, xStart, yStart);
-	
-	// console.log(isRotating);
 	
 };
 
 hold.addEventListener('mousedown', (e) => {
 		isRotating = true;
+	
+		
+		
 		xStart = e.x + window.scrollX;
 		yStart = e.y - 48 + window.scrollY;
-		// console.log(e.x, e.y-48+window.scrollY);
 		
-		// console.log(e.target.offsetParent.offsetParent);
+		
 		console.log(xStart, yStart);
 	});
-// body.addEventListener('mouseup', () => isRotating = false);
+
 
 hold.addEventListener('mousemove', rotate);
 	
-hold.addEventListener('mouseup', () => isRotating = false);
+hold.addEventListener('mouseup', (e) => {
+	
+	
+	isRotating = false;
+	xEnd = e.x + window.scrollX;
+	yEnd = e.y - 48 + window.scrollY;
+	oldXS = xs;
+	oldYS = ys;
+	console.log(xEnd, yEnd, oldXS, oldYS);
+	
+	});
+
+
 hold.addEventListener('mouseleave', () => isRotating = false);
 
 
