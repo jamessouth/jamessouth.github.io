@@ -4,6 +4,9 @@ const cc = document.querySelectorAll('.cube-container');
 // const body = document.querySelector('body');
 // const main = document.querySelector('main');
 
+
+// const cubes = Array.from(cc);
+
 const hold = document.querySelector('.hold');
 
 // function rotateCube(e){
@@ -82,15 +85,32 @@ const hold = document.querySelector('.hold');
 
 
 let isRotating = false;
-let xStart = 0;
-let yStart = 0;
+let xStart;
+let yStart;
 let xEnd;
-let yEnd = 0;
-let xs;
-let ys;
-let oldXS;
-let oldYS;
-let whichPB;
+let yEnd;
+// let xs;
+// let ys;
+// let oldXS;
+// let oldYS;
+let whichPB = 0;
+
+let rotObj = {
+	0 : {
+		x : 0,
+		y : 0,
+		xs : 0,
+		ys : 0
+	},
+	
+	1 : {
+		x : 0,
+		y : 0,
+		xs : 0,
+		ys : 0
+	}
+	
+};
 
 function rotate(e){
 	
@@ -99,36 +119,63 @@ function rotate(e){
 	const yPos = e.y - 48 + window.scrollY;
 	
 	
-	if(xEnd){
+	// if(xEnd){
 			
-		xs = xPos - xStart + oldXS;
-		ys = yPos - yStart + oldYS;
+		rotObj[whichPB].xs = xPos - xStart + rotObj[whichPB].x;
+		rotObj[whichPB].ys = yPos - yStart + rotObj[whichPB].y;
 			
-	} else {
+	// } else {
 	
-		xs = xPos - xStart;
-		ys = yPos - yStart;
+		// rotObj[whichPB].xs = xPos - xStart;
+		// rotObj[whichPB].ys = yPos - yStart;
 		
 	
-	}
+	// }
 	
-	pb[0].style.transform = `rotateX(${-ys}deg) rotateY(${xs}deg)`;
+	pb[whichPB].style.transform = `rotateX(${-rotObj[whichPB].ys}deg) rotateY(${rotObj[whichPB].xs}deg)`;
 	
-	console.log(xPos, yPos, xStart, yStart, xs, ys);
+	console.log(xPos, yPos, xStart, yStart, rotObj[whichPB].xs, rotObj[whichPB].ys, 'position, start, mvmt');
+	// console.log(xs, ys);
 	
 	
 };
 
 hold.addEventListener('mousedown', (e) => {
-		isRotating = true;
 	
 		
+		
+		const cubeZeroCtr = { x : (cc[0].offsetLeft + cc[0].offsetWidth/2), 
+					  y : (cc[0].offsetTop - 48 + cc[0].offsetHeight/2)
+					}
+					
+		const cubeOneCtr = { x : (cc[1].offsetLeft + cc[1].offsetWidth/2), 
+					  y : (cc[1].offsetTop - 48 + cc[1].offsetHeight/2)
+					}
+
+		console.log(cubeZeroCtr.x, cubeZeroCtr.y, cubeOneCtr.x, cubeOneCtr.y, 'centers of pbs');	
 		
 		xStart = e.x + window.scrollX;
 		yStart = e.y - 48 + window.scrollY;
 		
 		
-		console.log(xStart, yStart);
+		const distFromCubeZero = Math.round(Math.sqrt(Math.pow(Math.abs(cubeZeroCtr.x - xStart),2) + Math.pow(Math.abs(cubeZeroCtr.y - yStart),2)));
+		
+		const distFromCubeOne = Math.round(Math.sqrt(Math.pow(Math.abs(cubeOneCtr.x - xStart),2) + Math.pow(Math.abs(cubeOneCtr.y - yStart),2)));
+		
+		console.log(distFromCubeZero, distFromCubeOne, 'dists from pbs');
+		
+		if(distFromCubeZero <= distFromCubeOne){
+			whichPB = 0;
+		} else {
+			whichPB = 1;
+		}
+		
+		
+		
+		
+		
+		isRotating = true;
+		console.log(xStart, yStart, whichPB, 'start, which pb');
 	});
 
 
@@ -140,14 +187,37 @@ hold.addEventListener('mouseup', (e) => {
 	isRotating = false;
 	xEnd = e.x + window.scrollX;
 	yEnd = e.y - 48 + window.scrollY;
-	oldXS = xs;
-	oldYS = ys;
-	console.log(xEnd, yEnd, oldXS, oldYS);
+	rotObj[whichPB].x = rotObj[whichPB].xs || 0;
+	rotObj[whichPB].y = rotObj[whichPB].ys || 0;
 	
-	});
+	// oldXS = xs || 0;
+	// oldYS = ys || 0;
+	console.log(xEnd, yEnd, rotObj[whichPB].x, rotObj[whichPB].y, 'end, rotation values');
+	console.log('\n\n');
+});
 
 
-hold.addEventListener('mouseleave', () => isRotating = false);
+hold.addEventListener('mouseleave', (e) => {
+	
+	isRotating = false;
+	xEnd = e.x + window.scrollX;
+	yEnd = e.y - 48 + window.scrollY;
+	rotObj[whichPB].x = rotObj[whichPB].xs || 0;
+	rotObj[whichPB].y = rotObj[whichPB].ys || 0;
+	
+	// oldXS = xs || 0;
+	// oldYS = ys || 0;
+	console.log(xEnd, yEnd, rotObj[whichPB].x, rotObj[whichPB].y, 'end, rotation values');
+	console.log('\n\n');
+	console.log('mouse left');
+	
+	
+	
+	
+	
+	
+	
+});
 
 
 
