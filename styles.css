@@ -1,9 +1,9 @@
 /* Global Layout Set-up */
 
-* { 
+* {
   box-sizing: border-box;
 }
-  
+
 body {
   margin: 0;
   padding: 0;
@@ -18,7 +18,7 @@ body {
 .fullpic,
 .spiralpic{
 	width: 99.5%;
-}	
+}
 
 /* Nav bar Styles */
 
@@ -66,7 +66,7 @@ header {
   line-height: 1.5;
   background: radial-gradient(lightseagreen -80%, transparent),
 			  linear-gradient(0deg, #f7f5f0, transparent 90%),
-              url('images/spiral5.PNG') no-repeat;
+              url('images/spiral5.jpg') no-repeat;
   background-size: cover;
   overflow: hidden;
   padding-top: 60px;
@@ -132,7 +132,7 @@ h1:hover,
                 16px 16px 0 #222,
                 17px 17px 0 #222,
                 18px 18px 0 #222;
-} 
+}
 .location {
   font-size: 1.516em;
   margin-bottom: 0;
@@ -196,7 +196,7 @@ h1:hover,
 }
 
 .skills li:hover{
-  border-radius: 42px; 
+  border-radius: 42px;
 }
 
 .skills:hover > li{
@@ -247,11 +247,11 @@ h1:hover,
 	margin: 0 auto 30px;
 	font-size: 1.05em;
 	padding-top: 60px;
-	background: 
+	background:
 		linear-gradient(45deg, #f7f5f0, transparent 60%),
 		linear-gradient(225deg, #f7f5f0, transparent 70%),
 		radial-gradient(lightseagreen -115%, transparent),
-        url('images/spiral5.PNG') no-repeat;
+        url('images/spiral5.jpg') no-repeat;
 	background-size: cover;
 }
 .exp-list-h4{
@@ -319,7 +319,7 @@ a.github {
 }
 a.social:hover {
   opacity: 1;
-  
+
 }
 .clearfix {
   clear: both;
@@ -331,7 +331,7 @@ a.social:hover {
 @media screen and (min-width: 720px) {
 
   .flex {
-      display: flex; 
+      display: flex;
       max-width: 1200px;
       justify-content: space-around;
       margin: 0 auto;
@@ -341,7 +341,7 @@ a.social:hover {
     max-width: 1200px;
     padding: 0 30px;
   }
-  
+
   main {
     padding-top: 20px;
   }
@@ -407,11 +407,11 @@ a.social:hover {
 	.exp{
 		max-width: 99.6%;
 	}
-	
+
 }
 
 @media screen and (min-width: 315px) {
-	
+
 	.main-nav{
 		padding: 10px;
 	}
@@ -421,11 +421,11 @@ a.social:hover {
 	.nav li {
 		padding: 5px 10px 10px 10px;
 	}
-	
+
 }
 
 @media screen and (min-width: 350px) {
-	
+
 	header .name{
 		font-size: 2.31em;
 	}
@@ -435,5 +435,5 @@ a.social:hover {
 	header .profile-image{
 		margin-top: 90px;
 	}
-	
+
 }
